@@ -15,15 +15,17 @@
 </head>
 
 <body>
-        <div class="jumbotron">
-                <h1 class="display-3">Universal- Restaurant</h1>
-                <p class="lead">Eat here you must!</p>
-                <hr class="my-2">
-                <p>Delicious poisonous Foods</p>
-                <p class="lead">
-                    <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">Jumbo action name</a>
-                </p>
-            </div>
+    <div class="jumbotron">
+        <h1 class="display-3">Universal- Restaurant</h1>
+        <p class="lead">Eat here you must!</p>
+        <hr class="my-2">
+        <p>Delicious poisonous Foods</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" id="makeReservation" href="Jumbo action link" role="button">View Tables</a>
+            <a class="btn btn-primary btn-lg fas fa-home" href="Jumbo action link" role="button">Home</a>
+
+        </p>
+    </div>
 
     <!-- Form starts here -->
     <div class="container col-md-8">
@@ -51,26 +53,26 @@
 
     <script type="text/javascript">
         // Question: What does this code do?
-        $("#add-btn").on("click", function(event) {
-          event.preventDefault();
-    
-          var newCharacter = {
-            name: $("#name").val().trim(),
-            role: $("#emailAdress").val().trim(),
-            age: $("#phoneNum").val().trim(),
-            forcePoints: $("#ID").val().trim()
-          };
-    
-          // Question: What does this code do??
-          $.post("/api/characters", newCharacter)
-            .then(function(data) {
-              console.log(data);
-              alert("Adding character...");
-            });
-    
+        $("#makeReservation").on("click", function (event) {
+            event.preventDefault();
+
+            var newreservation = {
+                name: $("#name").val().trim(),
+                role: $("#emailAdress").val().trim(),
+                age: $("#phoneNum").val().trim(),
+                forcePoints: $("#ID").val().trim()
+            };
+
+            // Question: What does this code do??
+            $.post("/api/reservations", newreservation)
+                .then(function (data) {
+                    console.log(data);
+                    alert("Adding character...");
+                });
+
         });
-    
-      </script>
+
+    </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

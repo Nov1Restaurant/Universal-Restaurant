@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/Nov1Restaurant/Universal-Restaurant/issues"
   },
-  "homepage": "https://github.com/Nov1Restaurant/Universal-Restaurant#readme"
+  "homepage": "https://github.com/Nov1Restaurant/Universal-Restaurant#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "nodemon": "^1.18.5"
+  }
 }
