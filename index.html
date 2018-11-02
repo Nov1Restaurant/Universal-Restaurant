@@ -24,6 +24,29 @@
     </p>
 </div>
 
+<script type="text/javascript">
+ $.get("/api/reservations/", function (data) {
+      data.forEach(function (reservation) {
+        var Hname = $("h3").text("Name:" + reservation.name);
+        var Hnumber = $("h3").text("Number: " + reservation.number);
+        var Hemail = $("h3").text("Email: " + reservation.email);
+        var Hid = $("h3").text("ID: " + reservation.id);
+        // Hid.addClass("id");
+        var cardDiv = $("<div>");
+          cardDiv.addClass("card-body");
+        // var divStats = $("<div>")
+        divStats.addClass("card");
+        cardDiv.append(Hname);
+        cardDiv.append(Hnumber);
+        cardDiv.append(Hemail);
+        cardDiv.append(Hid);
+        // cardDiv.append(divStats);
+        $("#reservations").append(cardDiv);
+       
+      })
+    });
+
+</script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
