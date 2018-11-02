@@ -15,8 +15,6 @@
 </head>
 
 <body>
-
-
         <div class="jumbotron">
                 <h1 class="display-3">Universal- Restaurant</h1>
                 <p class="lead">Eat here you must!</p>
@@ -31,26 +29,48 @@
     <div class="container col-md-8">
         <form>
             <div class="form-group">
-                <label for="exampleFormControlInput1">Email address</label>
+                <label id="name">Name</label>
+                <input type="input" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+            </div>
+            <div class="form-group">
+                <label id="emailAddress">Email address</label>
                 <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
             </div>
             <div class="form-group">
-                <label for="exampleFormControlInput1">Email address</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                <label id="phoneNumer">Phone number</label>
+                <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
             </div>
             <div class="form-group">
-                <label for="exampleFormControlInput1">Email address</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                <label id="ID">ID</label>
+                <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
             </div>
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Email address</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-            </div>
-
 
 
         </form>
     </div>
+
+    <script type="text/javascript">
+        // Question: What does this code do?
+        $("#add-btn").on("click", function(event) {
+          event.preventDefault();
+    
+          var newCharacter = {
+            name: $("#name").val().trim(),
+            role: $("#emailAdress").val().trim(),
+            age: $("#phoneNum").val().trim(),
+            forcePoints: $("#ID").val().trim()
+          };
+    
+          // Question: What does this code do??
+          $.post("/api/characters", newCharacter)
+            .then(function(data) {
+              console.log(data);
+              alert("Adding character...");
+            });
+    
+        });
+    
+      </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
