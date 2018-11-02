@@ -21,9 +21,8 @@
         <hr class="my-2">
         <p>Delicious poisonous Foods</p>
         <p class="lead">
-            <a class="btn btn-primary btn-lg" id="makeReservation" href="Jumbo action link" role="button">View Tables</a>
-            <a class="btn btn-primary btn-lg fas fa-home" href="Jumbo action link" role="button">Home</a>
-
+            <a class="btn btn-primary btn-lg" id="makeReservation" href="/view" role="button">View Tables</a>
+            <a class="btn btn-primary btn-lg fas fa-home" href="/index" role="button">Home</a>
         </p>
     </div>
 
@@ -31,43 +30,43 @@
     <div class="container col-md-8">
         <form>
             <div class="form-group">
-                <label id="name">Name</label>
-                <input type="input" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                <label>Name</label>
+                <input type="input" class="form-control" id="name" placeholder="name@example.com">
             </div>
             <div class="form-group">
-                <label id="emailAddress">Email address</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                <label>Email address</label>
+                <input type="email" class="form-control" id="emailAdress" placeholder="name@example.com">
             </div>
             <div class="form-group">
-                <label id="phoneNumer">Phone number</label>
-                <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                <label>Phone number</label>
+                <input type="number" class="form-control" id="phoneNum" placeholder="name@example.com">
             </div>
             <div class="form-group">
-                <label id="ID">ID</label>
-                <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                <label>ID</label>
+                <input type="number" class="form-control" id="id" placeholder="name@example.com">
             </div>
 
-
+            <button type="submit" class="btn btn-primary link"id ="submit">Submit</button>
         </form>
     </div>
 
     <script type="text/javascript">
         // Question: What does this code do?
-        $("#makeReservation").on("click", function (event) {
+        $("#submit").on("click", function (event) {
             event.preventDefault();
 
-            var newreservation = {
+            var newReservation = {
                 name: $("#name").val().trim(),
-                role: $("#emailAdress").val().trim(),
-                age: $("#phoneNum").val().trim(),
-                forcePoints: $("#ID").val().trim()
+                number: $("#phoneNum").val().trim(),
+                email: $("#emailAdress").val().trim(),          
+                id: $("#id").val().trim()
             };
 
             // Question: What does this code do??
-            $.post("/api/reservations", newreservation)
+            $.post("/api/reservations", newReservation)
                 .then(function (data) {
                     console.log(data);
-                    alert("Adding character...");
+                    // alert("Adding character...");
                 });
 
         });

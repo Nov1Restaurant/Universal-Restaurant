@@ -22,53 +22,92 @@
     <hr class="my-2">
     <p>Delicious poisonous Foods</p>
     <p class="lead">
-      <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">Make a new Reversation</a>
+      <a class="btn btn-primary btn-lg" href="/form" role="button">Make a new Reversation</a>
     </p>
   </div>
 
-  <div class="card">
+  <div class="card" id="reservations">
     <div class="card-header">
-      <h3><strong>Reservation</strong></h3>
+      <h3><strong>Reservations</strong></h3>
     </div>
-    <div class="card-body">
+    <!-- <div class="card-body">
       <h2 id="id">ID</h2>
       <div id="stats">
         <h3><strong>Name:</strong> <span id="name">Placeholder</span></h3>
         <h3><strong>Number:</strong> <span id="number">5555555555</span></h3>
         <h3><strong>Email:</strong> <span id="email">2000</span></h3>
       </div>
-    </div>
+    </div> -->
   </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-      crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
-      crossorigin="anonymous"></script>
-    <script type="text/javascript">
-      var searchedReservation = $("#character-search").val().trim();
 
-      // Using a RegEx Pattern to remove spaces from searchedReservation
-      // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-      searchedReservation = searchedReservation.replace(/\s+/g, "").toLowerCase();
+  <div class="card" id="waitlist">
+      <div class="card-header">
+        <h3><strong>Waitlist</strong></h3>
+      </div>
+      <!-- <div class="card-body">
+        <h2 id="id">ID</h2>
+        <div id="stats">
+          <h3><strong>Name:</strong> <span id="name">Placeholder</span></h3>
+          <h3><strong>Number:</strong> <span id="number">5555555555</span></h3>
+          <h3><strong>Email:</strong> <span id="email">2000</span></h3>
+        </div>
+      </div> -->
+    </div>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    // var searchedReservation = $("#character-search").val().trim();
 
-      $.get("/api/reservations/" + searchedReservation, function (data) {
-        console.log(data);
-        if (data) {
-          $("#name").text(data.name);
-          $("#number").text(data.number);
-          $("#email").text(data.email);
-          $("#id").text(data.id);
-        }
-        else {
-          $("#name").text("There are no reservations at this time.");
-          // $("#stats").hide();
-        }
-      });
+    // Using a RegEx Pattern to remove spaces from searchedReservation
+    // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+    // searchedReservation = searchedReservation.replace(/\s+/g, "").toLowerCase();
 
-    </script>
+    $.get("/api/reservations/", function (data) {
+      data.forEach(function (reservation) {
+        var Hname = $("h3").text("<strong>Name:</strong>" + reservation.name);
+        var Hnumber = $("h3").text("<strong>Number:</strong>" + reservation.number);
+        var Hemail = $("h3").text("<strong>Email:</strong>" + reservation.email);
+        var Hid = $("h2");
+        Hid.addClass("id");
+        var cardDiv = $("<div>");
+          cardDiv.addClass("card-body");
+        var divStats = $("<div>")
+        divStats.addClass("stats");
+        divStats.append(Hname);
+        divStats.append(Hnumber);
+        divStats.append(Hemail);
+        cardDiv.append(Hid);
+        cardDiv.append(divStats);
+        $("#reservations").append(cardDiv);
+        // <div class='card-body'>
+        //   <h2 class='id'>reservation.id</h2>
+        //   <div class='stats'>
+        //     <h3><strong>Name:</strong>reservation.name</h3>
+        //     <h3><strong>Number:</strong>reservation.number</h3>
+        //     <h3><strong>Email:</strong>reservation.email</h3>
+        //   </div>
+        // </div>
+      })
+      console.log(reservation);
+      if (reservation) {
+        $("#name").text(reservation.name);
+        $("#number").text(reservation.number);
+        $("#email").text(reservation.email);
+        $("#id").text(reservation.id);
+      }
+      else {
+        $("#name").text("There are no reservations at this time.");
+        // $("#stats").hide();
+      }
+    });
+
+  </script>
 </body>
 
 </html>
