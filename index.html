@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Title</title>
+    <title>Home</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,31 +20,49 @@
     <p>Delicious poisonous Foods</p>
     <p class="lead">
         <a class="btn btn-primary btn-lg" id="makeReservation" href="/form" role="button">Make a Reservation</a>
-        <a class="btn btn-primary btn-lg" id= "viewTables" href="/view" role="button">View Tables</a>
+        <a class="btn btn-primary btn-lg" id= "viewTables" href="/" role="button">View Tables</a>
     </p>
 </div>
 
 <script type="text/javascript">
- $.get("/api/reservations/", function (data) {
+ $.get("/api/reservations", function (data) {
       data.forEach(function (reservation) {
         var Hname = $("h3").text("Name:" + reservation.name);
         var Hnumber = $("h3").text("Number: " + reservation.number);
         var Hemail = $("h3").text("Email: " + reservation.email);
         var Hid = $("h3").text("ID: " + reservation.id);
-        // Hid.addClass("id");
+        var Stats = Hname + Hemail + Hid + Hnumber;
         var cardDiv = $("<div>");
-          cardDiv.addClass("card-body");
+        cardDiv.addClass("card-body");
         // var divStats = $("<div>")
-        divStats.addClass("card");
-        cardDiv.append(Hname);
-        cardDiv.append(Hnumber);
-        cardDiv.append(Hemail);
-        cardDiv.append(Hid);
+        // divStats.addClass("card");
+        cardDiv.append(Stats);
+        // cardDiv.append(Hnumber);
+        // cardDiv.append(Hemail);
+        // cardDiv.append(Hid);
         // cardDiv.append(divStats);
         $("#reservations").append(cardDiv);
        
       })
     });
+
+      $("#viewTables").on("click", function () {
+            $.get("/api/reservations", function (data) {
+                console.log(data);
+                if (data) {
+                    cardDiv.show();
+                    $("#name").text(data.name);
+                    $("#number").text(data.number);
+                    $("#email").text(data.email);
+                    $("#id").text(data.id);
+                }
+                else {
+                    $("#name").text("There are no reservations at this time.");
+                    // $("#stats").hide();
+                    cardDiv.hide();
+                }
+            });
+        });
 
 </script>
 

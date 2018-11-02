@@ -16,10 +16,18 @@ app.use(express.json());
 // =============================================================
 var reservations = [
   {
+    routeName:"kevin",
     name: "kevin Hyde",
     number: 7737654321,
     email: "kevin@yahoo.com",
     id: 01    
+  },
+  {
+    routeName:"kim",
+    name: "kimmiboo",
+    number: 8313,
+    email: "kim@yahoo.com",
+    id: 02
   }
 ];
 
@@ -45,8 +53,8 @@ app.get("/api/reservations", function(req, res) {
 });
 
 // Displays a single reservation, or returns false
-app.get("/api/reservations/:reservationId", function(req, res) {
-  var chosen = req.params.reservationId;
+app.get("/api/reservations/:reservation", function(req, res) {
+  var chosen = req.params.reservation;
 
   console.log(chosen);
 
@@ -63,17 +71,17 @@ app.get("/api/reservations/:reservationId", function(req, res) {
 app.post("/api/reservations", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
-  var newreservation = req.body;
+  var newreservations = req.body;
 
   // Using a RegEx Pattern to remove spaces from newreservation
   // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-  newreservation.routeName = newreservation.name.replace(/\s+/g, "").toLowerCase();
+  newreservations.routeName = newreservations.name.replace(/\s+/g, "").toLowerCase();
 
-  console.log(newreservation);
+  console.log(newreservations);
 
-  characters.push(newreservation);
+  reservations.push(newreservations);
 
-  res.json(newreservation);
+  res.json(newreservations);
 });
 
 // Starts the server to begin listening

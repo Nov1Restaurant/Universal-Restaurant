@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Title</title>
+    <title>Form</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,7 +22,7 @@
         <p>Delicious poisonous Foods</p>
         <p class="lead">
             <a class="btn btn-primary btn-lg" id="viewTables" href="/view" role="button">View Tables</a>
-            <a class="btn btn-primary btn-lg fas fa-home" href="/index" role="button">Home</a>
+            <a class="btn btn-primary btn-lg fas fa-home" href="/" role="button">Home</a>
         </p>
     </div>
 
@@ -35,7 +35,7 @@
             </div>
             <div class="form-group">
                 <label>Email address</label>
-                <input type="email" class="form-control" id="emailAdress" placeholder="name@example.com">
+                <input type="email" class="form-control" id="emailAddress" placeholder="name@example.com">
             </div>
             <div class="form-group">
                 <label>Phone number</label>
@@ -51,36 +51,27 @@
     </div>
 
     <script type="text/javascript">
-        // Question: What does this code do?
+      
         $("#submit").on("click", function (event) {
             event.preventDefault();
 
-            var newReservation = {
+            var newReservations = {
                 name: $("#name").val().trim(),
                 number: $("#phoneNum").val().trim(),
-                email: $("#emailAdress").val().trim(),          
+                email: $("#emailAddress").val().trim(),          
                 id: $("#id").val().trim()
             };
 
             // Question: What does this code do??
-            $.post("/api/reservations", newReservation)
+            $.post("/api/reservations", newReservations)
                 .then(function (data) {
-                    console.log(data);
-                    // alert("Adding character...");
+                    console.log("form.html",data);
+                    alert("Adding character...");
                 });
-
         });
 
     </script>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>
