@@ -14,23 +14,23 @@ app.use(express.json());
 
 // Table Reservationts (DATA)
 // =============================================================
-var reservations = [
-  {
-    routeName:"kevin",
-    name: "kevin Hyde",
-    number: 7737654321,
-    email: "kevin@yahoo.com",
-    id: 01    
-  },
-  {
-    routeName:"kim",
-    name: "kimmiboo",
-    number: 8313,
-    email: "kim@yahoo.com",
-    id: 02
-  }
-];
-
+// var reservations = [
+//   {
+//     routeName:"kevin",
+//     name: "kevin Hyde",
+//     number: 7737654321,
+//     email: "kevin@yahoo.com",
+//     id: 01    
+//   },
+//   {
+//     routeName:"kim",
+//     name: "kimmiboo",
+//     number: 8313,
+//     email: "kim@yahoo.com",
+//     id: 02
+//   }
+// ];
+var reservations = [];
 // Routes
 // =============================================================
 
