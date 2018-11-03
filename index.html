@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <title>Home</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -9,74 +10,80 @@
     <script src="https://code.jquery.com/jquery.js"></script>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-  </head>
-  <body>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+        crossorigin="anonymous">
+</head>
 
-<div class="jumbotron">
-    <h1 class="display-3">Universal- Restaurant</h1>
-    <p class="lead">Eat here you must!</p>
-    <hr class="my-2">
-    <p>Delicious poisonous Foods</p>
-    <p class="lead">
-        <a class="btn btn-primary btn-lg" id="makeReservation" href="/form" role="button">Make a Reservation</a>
-        <a class="btn btn-primary btn-lg" id= "viewTables" href="/" role="button">View Tables</a>
-    </p>
-</div>
+<body>
 
-<div class="card">
-    <div class="card-header">
-      <strong>Character Database</strong></h3>
-    </div>
-    <div class="card-body">
-      <ul id="reservations" class="list-group">
-
-      </ul>
+    <div class="jumbotron">
+        <h1 class="display-3">Universal- Restaurant</h1>
+        <p class="lead">Eat here you must!</p>
+        <hr class="my-2">
+        <p>Delicious poisonous Foods</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" id="makeReservation" href="/form" role="button">Make a Reservation</a>
+            <a class="btn btn-primary btn-lg" id="viewTables" href="/" role="button">View Tables</a>
+        </p>
     </div>
 
-<script type="text/javascript">
+    <div class="card">
+        <div class="card-header">
+            <strong>Reservations</strong></h3>
+        </div>
+        <div class="card-body">
+            <ul id="reservations" class="list-group">
+
+            </ul>
+        </div>
+
+        <script type="text/javascript">
 
 
-       $.get("/api/reservations", function (data) {
-        for (var i = 0; i < data.length; i++) {
-          console.log(data[i]);
-          var listGroupItem = $("<li class='list-group-item'>");
-
-          listGroupItem.append($("<h2>").text("Name: " + data[i].name));
-          listGroupItem.append($("<h3>").text("Number: " + data[i].number));
-          listGroupItem.append($("<h3>").text("Email: " + data[i].email));
-          listGroupItem.append($("<h3>").text("id: " + data[i].id));
-
-          $("#reservations").append(listGroupItem);
-        }
-      });
-
-
-      $("#viewTables").on("click", function () {
             $.get("/api/reservations", function (data) {
-                console.log(data);
-                if (data) {
-                    $("#stats").show();
-                    // cardDiv.show();
-                    $("#name").text(data.name);
-                    $("#number").text(data.number);
-                    $("#email").text(data.email);
-                    $("#id").text(data.id);
-                }
-                else {
-                    $("#reservation").text("There are no reservations at this time.");
-                    $("#stats").hide();
-                    // cardDiv.hide();
+                for (var i = 0; i < data.length; i++) {
+                    console.log(data[i]);
+                    var listGroupItem = $("<li class='list-group-item'>");
+
+                    listGroupItem.append($("<h2>").text("Name: " + data[i].name));
+                    listGroupItem.append($("<h3>").text("Number: " + data[i].number));
+                    listGroupItem.append($("<h3>").text("Email: " + data[i].email));
+                    listGroupItem.append($("<h3>").text("id: " + data[i].id));
+
+                    $("#reservations").append(listGroupItem);
                 }
             });
-        });
 
-</script>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-  </body>
+            $("#viewTables").on("click", function () {
+                $.get("/api/reservations", function (data) {
+                    console.log(data);
+                    if (data) {
+                        $("#stats").show();
+                        // cardDiv.show();
+                        $("#name").text(data.name);
+                        $("#number").text(data.number);
+                        $("#email").text(data.email);
+                        $("#id").text(data.id);
+                    }
+                    else {
+                        $("#reservations").text("There are no reservations at this time.");
+                        $("#stats").hide();
+                        // cardDiv.hide();
+                    }
+                });
+            });
+
+        </script>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+            crossorigin="anonymous"></script>
+</body>
+
 </html>

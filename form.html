@@ -21,7 +21,7 @@
         <hr class="my-2">
         <p>Delicious poisonous Foods</p>
         <p class="lead">
-            <a class="btn btn-primary btn-lg" id="viewTables" href="/view" role="button">View Tables</a>
+            <!-- <a class="btn btn-primary btn-lg" id="viewTables" href="/view" role="button">View Tables</a> -->
             <a class="btn btn-primary btn-lg fas fa-home" href="/" role="button">Home</a>
         </p>
     </div>
@@ -46,26 +46,26 @@
                 <input type="number" class="form-control" id="id" placeholder="name@example.com">
             </div>
 
-            <button type="submit" class="btn btn-primary link"id ="submit">Submit</button>
+            <button type="submit" class="btn btn-primary link" id="submit">Submit</button>
         </form>
     </div>
 
     <script type="text/javascript">
-      
+
         $("#submit").on("click", function (event) {
             event.preventDefault();
 
             var newReservations = {
                 name: $("#name").val().trim(),
                 number: $("#phoneNum").val().trim(),
-                email: $("#emailAddress").val().trim(),          
+                email: $("#emailAddress").val().trim(),
                 id: $("#id").val().trim()
             };
 
             // Question: What does this code do??
             $.post("/api/reservations", newReservations)
                 .then(function (data) {
-                    console.log("form.html",data);
+                    console.log("form.html", data);
                     alert("Adding character...");
                 });
         });
